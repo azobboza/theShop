@@ -10,11 +10,6 @@ namespace TheShop.Persistance
 {
     public class Supplier1 : ISupplier
     {
-        public bool ArticleInInventory(int id)
-        {
-            return true;
-        }
-
         public Article GetArticle(int id)
         {
             return new Article()
