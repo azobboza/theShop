@@ -42,6 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IDatabaseDriver.cs" />
+    <Compile Include="Contracts\IShopService.cs" />
+    <Compile Include="Contracts\ISupplier.cs" />
+    <Compile Include="Entities\Article.cs" />
+    <Compile Include="LoggerService\LoggerManager.cs" />
+    <Compile Include="Persistance\InMemoryDatabase.cs" />
+    <Compile Include="ExternalServices\Supplier1.cs" />
+    <Compile Include="ExternalServices\Supplier2.cs" />
+    <Compile Include="ExternalServices\Supplier3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShopService.cs" />
@@ -51,5 +60,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

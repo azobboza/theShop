@@ -8,10 +8,10 @@ using TheShop.Entities;
 
 namespace TheShop.Persistance
 {
-    public class DatabaseDriver : IDatabaseDriver
+    public class InMemoryDatabase : IDatabaseDriver
     {
         private readonly List<Article> _articles;
-        public DatabaseDriver()
+        public InMemoryDatabase()
         {
             _articles = new List<Article>();
         }

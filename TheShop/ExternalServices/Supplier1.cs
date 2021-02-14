@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using TheShop.Contracts;
 using TheShop.Entities;
 
-namespace TheShop.Persistance
+namespace TheShop.ExternalServices
 {
-    public class Supplier2 : ISupplier
+    public class Supplier1 : ISupplier
     {
         public Article GetArticle(int id)
         {
             return new Article()
             {
                 Id = 1,
-                Name = "Article from supplier2",
-                Price = 459
+                Name = "Article from supplier1",
+                Price = 458
             };
         }
     }
