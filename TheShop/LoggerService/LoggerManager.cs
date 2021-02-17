@@ -8,17 +8,17 @@ namespace TheShop.LoggerService
 {
     public static class LoggerManager
     {
-        public static void Info(string message)
+        public static void LogInfo(string message)
         {
             Console.WriteLine("Info: " + message);
         }
 
-        public static void Error(string message)
+        public static void LogError(string message)
         {
             Console.WriteLine("Error: " + message);
         }
 
-        public static void Debug(string message)
+        public static void LogDebug(string message)
         {
             Console.WriteLine("Debug: " + message);
         }

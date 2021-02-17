@@ -46,6 +46,7 @@
     <Compile Include="Contracts\IShopService.cs" />
     <Compile Include="Contracts\ISupplier.cs" />
     <Compile Include="Entities\Article.cs" />
+    <Compile Include="Entities\Buyer.cs" />
     <Compile Include="LoggerService\LoggerManager.cs" />
     <Compile Include="Persistance\InMemoryDatabase.cs" />
     <Compile Include="ExternalServices\Supplier1.cs" />

@@ -14,11 +14,11 @@ namespace TheShop
 		
 		public ShopService(List<ISupplier> suppliers, IDatabaseDriver databaseDriver)
 		{
-            _suppliers = suppliers;
-            _databaseDriver = databaseDriver;
+            _suppliers = suppliers ?? throw new ArgumentNullException("ShopService constructor: List<ISupplier> type is null.");
+            _databaseDriver = databaseDriver ?? throw new ArgumentNullException("ShopService constructor: IDatabaseDriver type is null.");
 		}
 
-        public Article OrderArticle(int id, int maxExpectedPrice)
+        public Article OrderArticle(int id, decimal maxExpectedPrice)
         {
             foreach (var supplier in _suppliers)
             {
@@ -36,22 +36,14 @@ namespace TheShop
         {
             if (article == null)
             {
-                throw new ArgumentNullException("ShopService.SellArticle() method. Given Article variable is null.");
+                throw new ArgumentNullException("ShopService.SellArticle() method. No Article to sell.");
             }
 
             article.IsSold = true;
             article.SoldDate = DateTime.Now;
             article.BuyerId = buyerId;
 
-            try
-            {
-                _databaseDriver.Save(article);
-                LoggerManager.Info("Article with id=" + article.Id + " is sold.");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Could not save article with id={article.Id}. Exception: {ex}");
-            }
+            _databaseDriver.Save(article);
         }
 
 		public void DispalyArticle(Article article)
