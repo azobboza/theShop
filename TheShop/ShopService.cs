@@ -7,34 +7,25 @@ namespace TheShop
 {
 	public class ShopService : IShopService
 	{
-        private readonly List<ISupplier> _suppliers;
+        private readonly IOrderService _orderService;
         private readonly IDatabaseDriver _databaseDriver;
 		
-		public ShopService(List<ISupplier> suppliers, IDatabaseDriver databaseDriver)
+		public ShopService(IOrderService orderService, IDatabaseDriver databaseDriver)
 		{
-            _suppliers = suppliers ?? throw new ArgumentNullException("ShopService constructor: List<ISupplier> type is null.");
+            _orderService = orderService ?? throw new ArgumentNullException("ShopService constructor: IOrderService type is null.");
             _databaseDriver = databaseDriver ?? throw new ArgumentNullException("ShopService constructor: IDatabaseDriver type is null.");
 		}
 
-        public Article OrderArticle(int id, decimal maxExpectedPrice)
+        public Article OrderArticle(int id, double maxExpectedPrice)
         {
-            foreach (var supplier in _suppliers)
-            {
-                var article = supplier.GetArticle(id);
-                if (article != null)
-                {
-                    if (article.Price < maxExpectedPrice)
-                        return article;
-                }
-            }
-            return null;
+            return _orderService.Order(id, maxExpectedPrice);
         }
 
         public void SellArticle(int buyerId, Article article)
         {
             if (article == null)
             {
-                throw new ArgumentNullException("ShopService.SellArticle() method. No Article to sell.");
+                throw new Exception("ShopService.SellArticle() method. No Article to sell.");
             }
 
             article.IsSold = true;
@@ -55,5 +46,5 @@ namespace TheShop
 
             Console.WriteLine("Found article with ID: " + article.Id);
         }
-	}
+    }
 }

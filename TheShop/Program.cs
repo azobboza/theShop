@@ -13,34 +13,28 @@ namespace TheShop
 		private static void Main(string[] args)
 		{
             int articleId = 1;
-
-            var buyer = new Buyer()
-            {
-                Id = 10,
-                MaxExpectedPrice = 500
-            };
-
-            List<ISupplier> suppliers = new List<ISupplier>
+            int buyerId = 1;
+            int maxExpectedPrice = 100;
+            var buyer = new Buyer(buyerId, maxExpectedPrice);
+            
+            var suppliers = new List<ISupplier>
             {
                 new Supplier1(),
                 new Supplier2(),
                 new Supplier3()
             };
 
-            IDatabaseDriver databaseDriver = new InMemoryDatabase();
-			IShopService shopService = new ShopService(suppliers, databaseDriver);
+            var databaseDriver = new InMemoryDatabase();
+            var orderService = new OrderService(suppliers);
+            var shopService = new ShopService(orderService, databaseDriver);
+            var service = new Service(shopService);
 
-			try
-			{
-                var article = shopService.OrderArticle(articleId, buyer.MaxExpectedPrice);
-                
-				shopService.SellArticle(buyer.Id, article);
-
-                shopService.DispalyArticle(article);
-
+            try
+            {
+                service.Run(articleId, buyer);
             }
-			catch (Exception ex)
-			{
+            catch (Exception ex)
+            {
                 LoggerManager.LogError("The application terminated with an error.");
                 LoggerManager.LogError($"Exception: {ex} ");
             }
