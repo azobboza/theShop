@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using TheShop.Contracts;
 using Moq;
-using TheShop.Persistance;
 using TheShop.Entities;
 
 namespace TheShop.UnitTests
