@@ -5,19 +5,16 @@ using TheShop.Entities;
 
 namespace TheShop.Persistance
 {
-    public class InMemoryDatabase : IDatabaseDriver
+    public class InMemoryDatabase 
     {
-        private readonly List<Article> _articles;
-        public InMemoryDatabase()
-        {
-            _articles = new List<Article>();
-        }
-        public Article GetById(int id)
+        private static List<Article> _articles = new List<Article>();
+        
+        public static Article GetById(int id)
         {
             return _articles.Single(x => x.Id == id);
         }
 
-        public void Save(Article article)
+        public static void Save(Article article)
         {
             _articles.Add(article);
         }

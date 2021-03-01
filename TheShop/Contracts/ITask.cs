@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TheShop.Entities;
 
 namespace TheShop.Contracts
 {
-    public interface IDatabaseDriver
+    public interface ITask
     {
-        Article GetById(int id);
-        void Save(Article article);
+        void Execute();
     }
 }
