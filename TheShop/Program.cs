@@ -14,7 +14,7 @@ namespace TheShop
 		{
             int articleId = 1;
             int buyerId = 1;
-            int maxExpectedPrice = 100;
+            int maxExpectedPrice = 600;
             
             var suppliers = new List<ISupplier>
             {

@@ -30,7 +30,10 @@ namespace TheShop
                 if (article != null)
                 {
                     if (article.Price < MaxExpectedPrice)
+                    {
                         InMemoryDatabase.Save(new Article { Id = ArticleId, IsSold = true, SoldDate = DateTime.Now, BuyerId = BuyerId });
+                        return;
+                    }
                 }
             }
         }
